@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace D365FOEnvironmentComparisonUtility.Models
+﻿namespace D365FOEnvironmentComparisonUtility.Models
 {
     public class SecurityAccessChanges
     {
-        public string RoleSystemName { get; set; }
+        public string RoleIdentifier { get; set; }
         public string RoleName { get; set; }
-        public string SubRoleSystemName { get; set; }
+        public string SubRoleIdentifier { get; set; }
         public string SubRoleName { get; set; }
-        public string DutySystemName { get; set; }
+        public string DutyIdentifier { get; set; }
         public string DutyName { get; set; }
-        public string PrivilegeSystemName { get; set; }
+        public string PrivilegeIdentifier { get; set; }
         public string PrivilegeName { get; set; }
         public string SecurableObject { get; set; }
         public string SecurableObjectType { get; set; }
@@ -33,10 +27,10 @@ namespace D365FOEnvironmentComparisonUtility.Models
         public bool Equals(SecurityAccessChanges sac)
         {
             return sac != null &&
-                string.Equals(RoleSystemName, sac.RoleSystemName, StringComparison.CurrentCultureIgnoreCase) &&
-                string.Equals(SubRoleSystemName, sac.SubRoleSystemName, StringComparison.CurrentCultureIgnoreCase) &&
-                string.Equals(DutySystemName, sac.DutySystemName, StringComparison.CurrentCultureIgnoreCase) &&
-                string.Equals(PrivilegeSystemName, sac.PrivilegeSystemName, StringComparison.CurrentCultureIgnoreCase) &&
+                string.Equals(RoleIdentifier, sac.RoleIdentifier, StringComparison.CurrentCultureIgnoreCase) &&
+                string.Equals(SubRoleIdentifier, sac.SubRoleIdentifier, StringComparison.CurrentCultureIgnoreCase) &&
+                string.Equals(DutyIdentifier, sac.DutyIdentifier, StringComparison.CurrentCultureIgnoreCase) &&
+                string.Equals(PrivilegeIdentifier, sac.PrivilegeIdentifier, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(SecurableObject, sac.SecurableObject, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(SecurableObjectType, sac.SecurableObjectType, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(Read, sac.Read, StringComparison.CurrentCultureIgnoreCase) &&
@@ -49,10 +43,10 @@ namespace D365FOEnvironmentComparisonUtility.Models
         public override int GetHashCode()
         {
             HashCode hash = new HashCode();
-            hash.Add(RoleSystemName);
-            hash.Add(SubRoleSystemName);
-            hash.Add(DutySystemName);
-            hash.Add(PrivilegeSystemName);
+            hash.Add(RoleIdentifier);
+            hash.Add(SubRoleIdentifier);
+            hash.Add(DutyIdentifier);
+            hash.Add(PrivilegeIdentifier);
             hash.Add(SecurableObject);
             hash.Add(SecurableObjectType);
             hash.Add(Read);
