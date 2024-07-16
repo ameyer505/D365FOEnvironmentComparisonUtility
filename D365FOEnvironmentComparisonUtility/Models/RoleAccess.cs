@@ -32,13 +32,13 @@
                 string.Equals(DutyIdentifier, ra.DutyIdentifier, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(PrivilegeIdentifier, ra.PrivilegeIdentifier, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(SecurableObject, ra.SecurableObject, StringComparison.CurrentCultureIgnoreCase) &&
-                string.Equals(SecurableType,  ra.SecurableType, StringComparison.CurrentCultureIgnoreCase) &&
+                string.Equals(SecurableType, ra.SecurableType, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(Read, ra.Read, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(Update, ra.Update, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(Create, ra.Create, StringComparison.CurrentCultureIgnoreCase) &&
                 string.Equals(Delete, ra.Delete, StringComparison.CurrentCultureIgnoreCase) &&
-                string.Equals(Invoke, ra.Invoke, StringComparison.CurrentCultureIgnoreCase) &&
-                string.Equals(ComputedLicense, ra.ComputedLicense, StringComparison.CurrentCultureIgnoreCase);
+                string.Equals(Invoke, ra.Invoke, StringComparison.CurrentCultureIgnoreCase); //&&
+                //string.Equals(ComputedLicense, ra.ComputedLicense, StringComparison.CurrentCultureIgnoreCase);
         }
 
         public override int GetHashCode()
@@ -55,7 +55,7 @@
             hash.Add(Create, StringComparer.CurrentCultureIgnoreCase);
             hash.Add(Delete, StringComparer.CurrentCultureIgnoreCase);
             hash.Add(Invoke, StringComparer.CurrentCultureIgnoreCase);
-            hash.Add(ComputedLicense, StringComparer.CurrentCultureIgnoreCase);
+            //hash.Add(ComputedLicense, StringComparer.CurrentCultureIgnoreCase);
             return hash.ToHashCode();
         }
     }
