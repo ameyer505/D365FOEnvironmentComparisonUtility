@@ -412,14 +412,14 @@ namespace D365FOEnvironmentComparisonUtility
         {
 
             List<SecurityLayer> srcRoleList = srcRoleAccess.Select(r => new SecurityLayer { Identifier = r.RoleIdentifier, Name = r.RoleName }).DistinctBy(x => new { x.Identifier }).ToList();
-            List<SecurityLayer> destRoleList = destRoleAccess.Select(r => new SecurityLayer { Identifier = r.RoleIdentifier, Name = r.RoleName }).DistinctBy(x => new {x.Identifier}).ToList();
+            List<SecurityLayer> destRoleList = destRoleAccess.Select(r => new SecurityLayer { Identifier = r.RoleIdentifier, Name = r.RoleName }).DistinctBy(x => new { x.Identifier }).ToList();
 
             int srcRoleCount = srcRoleList.Count();
             int destRoleCount = destRoleList.Count();
             int count = 1;
             foreach (var srcRole in srcRoleList)
             {
-                tb_output.AppendText(DateTime.Now.ToString() + " - Processing role: " + srcRole.Name + " ("+count+"/"+srcRoleCount + ")" + Environment.NewLine);
+                tb_output.AppendText(DateTime.Now.ToString() + " - Processing role: " + srcRole.Name + " (" + count + "/" + srcRoleCount + ")" + Environment.NewLine);
                 //Look for removed roles
                 var destRole = destRoleAccess.FirstOrDefault(r => string.Equals(srcRole.Identifier, r.RoleIdentifier, StringComparison.CurrentCultureIgnoreCase));
 
@@ -555,7 +555,7 @@ namespace D365FOEnvironmentComparisonUtility
             DateTime currTime = DateTime.Now;
             string sourceEnv = Path.GetFileName(tb_srcFile.Text).Split("-")[0];
             string destEnv = Path.GetFileName(tb_destFile.Text).Split('-')[0];
-            string fileName = "EnvComp-" + sourceEnv + "-" + destEnv + "-" + currTime.Day+currTime.Month+currTime.Year+".xlsx";
+            string fileName = "EnvComp-" + sourceEnv + "-" + destEnv + "-" + currTime.Day + currTime.Month + currTime.Year + ".xlsx";
 
             string filePath = Path.Combine(outputPath, fileName);
             FileInfo fi = new FileInfo(filePath);
@@ -591,7 +591,7 @@ namespace D365FOEnvironmentComparisonUtility
                 wsOverview.Cells[1, 4].Style.Font.Bold = true;
 
                 int row = 2;
-                foreach(var addedObject in overview.AddedObjects)
+                foreach (var addedObject in overview.AddedObjects)
                 {
                     wsOverview.Cells[row, 1].Value = addedObject.ObjectId;
                     wsOverview.Cells[row, 2].Value = addedObject.ObjectName;
@@ -600,7 +600,7 @@ namespace D365FOEnvironmentComparisonUtility
                     row++;
                 }
 
-                foreach(var modifiedObject in overview.ModifiedObjects)
+                foreach (var modifiedObject in overview.ModifiedObjects)
                 {
                     wsOverview.Cells[row, 1].Value = modifiedObject.ObjectId;
                     wsOverview.Cells[row, 2].Value = modifiedObject.ObjectName;
@@ -609,7 +609,7 @@ namespace D365FOEnvironmentComparisonUtility
                     row++;
                 }
 
-                foreach(var removedObject in overview.RemovedObjects)
+                foreach (var removedObject in overview.RemovedObjects)
                 {
                     wsOverview.Cells[row, 1].Value = removedObject.ObjectId;
                     wsOverview.Cells[row, 2].Value = removedObject.ObjectName;
@@ -640,7 +640,7 @@ namespace D365FOEnvironmentComparisonUtility
                 wsDetails.Cells[1, 8].Style.Font.Bold = true;
 
                 row = 2;
-                foreach(var detail in details)
+                foreach (var detail in details)
                 {
                     wsDetails.Cells[row, 1].Value = detail.ObjectId;
                     wsDetails.Cells[row, 2].Value = detail.ObjectName;
@@ -694,7 +694,7 @@ namespace D365FOEnvironmentComparisonUtility
                 wsAccChanges.Cells[1, 16].Style.Font.Bold = true;
 
                 row = 2;
-                foreach(var addedSecAcc in securityComparisonDetails.AddedRoleAccess)
+                foreach (var addedSecAcc in securityComparisonDetails.AddedRoleAccess)
                 {
                     wsAccChanges.Cells[row, 1].Value = addedSecAcc.RoleName;
                     wsAccChanges.Cells[row, 2].Value = addedSecAcc.RoleIdentifier;
@@ -716,7 +716,7 @@ namespace D365FOEnvironmentComparisonUtility
                     row++;
                 }
 
-                foreach(var modifiedSecAcc in securityComparisonDetails.ModifiedRoleAccess)
+                foreach (var modifiedSecAcc in securityComparisonDetails.ModifiedRoleAccess)
                 {
                     wsAccChanges.Cells[row, 1].Value = modifiedSecAcc.RoleName;
                     wsAccChanges.Cells[row, 2].Value = modifiedSecAcc.RoleIdentifier;
@@ -738,7 +738,7 @@ namespace D365FOEnvironmentComparisonUtility
                     row++;
                 }
 
-                foreach(var removedSecAcc in securityComparisonDetails.RemovedRoleAccess)
+                foreach (var removedSecAcc in securityComparisonDetails.RemovedRoleAccess)
                 {
                     wsAccChanges.Cells[row, 1].Value = removedSecAcc.RoleName;
                     wsAccChanges.Cells[row, 2].Value = removedSecAcc.RoleIdentifier;
@@ -766,7 +766,7 @@ namespace D365FOEnvironmentComparisonUtility
             }
 
         }
-    
+
 
         #region Helper Methods
 
@@ -775,7 +775,7 @@ namespace D365FOEnvironmentComparisonUtility
             EnvConfig config = new EnvConfig();
             string[] pathSplit = Path.GetFileName(path).Split("-");
             config.EnvironmentName = pathSplit[0];
-            using(ZipArchive archive = ZipFile.OpenRead(path))
+            using (ZipArchive archive = ZipFile.OpenRead(path))
             {
                 foreach (ZipArchiveEntry entry in archive.Entries)
                 {
@@ -786,7 +786,7 @@ namespace D365FOEnvironmentComparisonUtility
                             {
                                 using (var reader = new StreamReader(stream))
                                 {
-                                    using(var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                                    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                                     {
                                         config.Users = csv.GetRecords<User>().ToList();
                                     }
@@ -798,7 +798,7 @@ namespace D365FOEnvironmentComparisonUtility
                             {
                                 using (var reader = new StreamReader(stream))
                                 {
-                                    using(var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                                    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                                     {
                                         config.SecurityUserRoles = csv.GetRecords<SecurityUserRole>().ToList();
                                     }
@@ -810,7 +810,7 @@ namespace D365FOEnvironmentComparisonUtility
                             {
                                 using (var reader = new StreamReader(stream))
                                 {
-                                    using(var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                                    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                                     {
                                         config.SecurityUserRoleOrgs = csv.GetRecords<SecurityUserRoleOrganization>().ToList();
                                     }
@@ -822,7 +822,7 @@ namespace D365FOEnvironmentComparisonUtility
                             {
                                 using (var reader = new StreamReader(stream))
                                 {
-                                    using(var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                                    using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
                                     {
                                         config.RoleAccessList = csv.GetRecords<RoleAccess>().ToList();
                                     }
